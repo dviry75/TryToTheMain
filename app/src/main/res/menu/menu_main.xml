@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="השוואת חודשים"
+        android:orderInCategory="100"
+        android:id="@+id/equal_month"
+        app:showAsAction="never" />
+
+
+    <item
+        android:title="קטגוריות"
+        android:orderInCategory="50"
+        android:id="@+id/category"
+        app:showAsAction="never" />
+
+    <item
+        android:title="לוח שנה"
+        android:id="@+id/calendar_equale"
+        android:orderInCategory="300"
+        app:showAsAction="never" />
+
+    <item
+        android:title="תצלום כרטיס"
+        android:orderInCategory="400"
+        android:id="@+id/view_card"
+        app:showAsAction="never" />
+
+    <item
+        android:title="הלוואות"
+        android:orderInCategory="350"
+        android:id="@+id/loans"
+        app:showAsAction="never" />
+
+    <item
+        android:title="הגבלת הוצאות"
+        android:orderInCategory="500"
+        android:id="@+id/limit_shopping"
+        app:showAsAction="never" />
+
+    <item
+        android:title="התנתק "
+        android:id="@+id/disconnectd"
+        android:orderInCategory="600"
+        app:showAsAction="never" />
+
+</menu>
