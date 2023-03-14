@@ -7,20 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    @Override
+    Button expense , detail_money;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        expense = (Button) findViewById(R.id.type_expense);
+        detail_money = (Button) findViewById(R.id.all_money);
+        expense.setOnClickListener(this);
+        detail_money.setOnClickListener(this);
 
 
     }
 
 
     public void onClick(View view) {
+        if(view == expense){
+            Intent intent=new Intent(this,YourExpense.class);
+            startActivity(intent);
+        }
+        else if(view == detail_money){
+            Intent intent=new Intent(this,DetailsMoney.class);
+            startActivity(intent);
+        }
 
 
     }

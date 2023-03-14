@@ -14,20 +14,33 @@
         android:theme="@style/Theme.TryToTheMain"
         tools:targetApi="31">
         <activity
-            android:name=".limitCredit"
+            android:name=".DetailsMoney"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".YourExpense"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".limitCredit"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".photoOfCradit"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".loansActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".compareMonth"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".categoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
