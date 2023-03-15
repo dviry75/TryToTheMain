@@ -43,7 +43,6 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_marginTop="30dp"
-        android:inputType="number"
         android:hint="הזן תיאור"/>
     <Button
         android:layout_width="wrap_content"
@@ -54,10 +53,19 @@
         android:layout_marginTop="25dp"
         android:textSize="15sp"/>
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
         android:id="@+id/invoicing"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שמירה"
+        android:id="@+id/saveBill"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:textSize="15sp"/>
 
 
 

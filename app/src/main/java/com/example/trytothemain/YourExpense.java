@@ -22,9 +22,10 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
     Spinner choose_category;
     List<String> category;
-    Button takeBill;
+    Button takeBill , save;
     ImageView bill;
     Bitmap bitBill;
+
 
 
 
@@ -34,13 +35,11 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
         takeBill = (Button) findViewById(R.id.take_invoicing);
         bill = (ImageView) findViewById(R.id.invoicing);
-        takeBill.setOnClickListener(this);
-
-
-
+        takeBill.setOnClickListener(YourExpense.this);
+        save = (Button) findViewById(R.id.saveBill);
+        save.setOnClickListener(YourExpense.this);
 
         //עשיית הקטיוגריות באובייקט ספינר
-        setContentView(R.layout.activity_your_expense);
         choose_category = (Spinner) findViewById(R.id.open_category);  // לבדוק איך מעדכנים מאקטביטי אחר
         category = new ArrayList<String>();
         category.add("בגדים");
@@ -51,14 +50,19 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
         choose_category.setAdapter(dataAdapter);
         choose_category.setOnItemSelectedListener(this);
 
-    }
-    public void onClick(View view) {
-        if(view == takeBill){
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,0);
-        }
+
+
+
+
+
+
+
+
+
+
 
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0)//coming from camera
@@ -85,14 +89,25 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
 
 
+
     //הפונקצייה של האובייקט ספינר
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        //String item = parent.getItemAtPosition(position).toString();    //בדיקה איך קוראים לפריט
+
     }
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    public void onClick(View view) {
+        if(view == takeBill){
+            Toast.makeText(this, "Work", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,0);
+        }
+        if(view == save){
+
+        }
 
 
+    }
 }
