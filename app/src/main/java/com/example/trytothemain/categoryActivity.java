@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class categoryActivity extends AppCompatActivity {
     Dialog categoryDialod;
-    EditText writeCategory;
+    EditText writeCategory;//hfjdth
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
