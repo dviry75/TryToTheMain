@@ -12,33 +12,36 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button expense , detail_money;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        expense = (Button) findViewById(R.id.type_expense);
-        detail_money = (Button) findViewById(R.id.all_money);
-        expense.setOnClickListener(this);
-        detail_money.setOnClickListener(this);
 
 
     }
 
 
     public void onClick(View view) {
-        if(view == expense){
-            Intent intent=new Intent(this,YourExpense.class);
-            startActivity(intent);
-        }
-        else if(view == detail_money){
-            Intent intent=new Intent(this,DetailsMoney.class);
-            startActivity(intent);
-        }
-
 
     }
+
+
+
+    public void allDetails(View v){
+        Intent intent=new Intent(this,DetailsMoney.class);
+        startActivity(intent);
+
+    }
+
+
+
+
+    public void yourExpense(View v){
+        Intent intent=new Intent(this,YourExpense.class);
+        startActivity(intent);
+    }
+
 
 
 
@@ -107,13 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (id == R.id.view_card) { // לבדוק בפעם הראשונה הגדרת כרטיס.
             Toast.makeText(this,"you selected your card", Toast.LENGTH_SHORT).show();// לבדוק אם אפשר לשים שם עוד סיסמא
             Intent intent=new Intent(this,photoOfCradit.class);
-            startActivity(intent);
-
-            return true;
-        }
-        else if (id == R.id.limit_shopping) {
-            Toast.makeText(this,"you selected to limit", Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(this,limitCredit.class);
             startActivity(intent);
 
             return true;

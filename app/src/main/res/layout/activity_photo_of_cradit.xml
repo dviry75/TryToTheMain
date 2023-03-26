@@ -2,12 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".photoOfCradit">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="35sp"
+        android:gravity="center"
+        android:textColor="@color/black"
         android:text="הכרטיס שלך - >"/>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תמונה של הכרטיס"
+        android:id="@+id/yourCredit"
+        android:background="@color/black"
+        android:layout_gravity="center"
+        android:onClick="yourCredit"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="צלם כרטיס חדש"
+        android:id="@+id/newCredit"
+        android:background="@color/black"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="newCredit"
+        android:textSize="25sp"/>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:id="@+id/tvCredit"
+        android:layout_marginTop="50dp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+
+        android:textColor="@color/black"
+        android:text="YOU DONT NEET TO SEE"/>
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="הקוד שלך"
+        android:textColorHint="@color/black"
+        android:id="@+id/codeCredit"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:textSize="25sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="פתח"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/saveOrOpen"
+        android:onClick="open"
+        android:background="@color/black"
+        android:visibility="invisible"
+        />
+
+
+
+
+
+
+
 
 </LinearLayout>

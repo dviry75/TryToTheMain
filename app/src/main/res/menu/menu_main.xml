@@ -21,7 +21,7 @@
         app:showAsAction="never" />
 
     <item
-        android:title="תצלום כרטיס"
+        android:title="הכרטיס שלך"
         android:orderInCategory="400"
         android:id="@+id/view_card"
         app:showAsAction="never" />

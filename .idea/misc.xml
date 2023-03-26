@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/drawable/main_button.xml" value="0.2045" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_category.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_compare_month.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_limit_credit.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_loans.xml" value="0.33697916666666666" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_main.xml" value="0.35104166666666664" />
-        <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_photo_of_cradit.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_photo_of_cradit.xml" value="0.25" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/activity_your_expense.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/add_category_dialog.xml" value="0.2667572463768116" />
+        <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/layout/photo_credit_dialog.xml" value="0.2667572463768116" />
         <entry key="..\:/Users/mishy/AndroidStudioProjects/TryToTheMain/app/src/main/res/menu/menu_main.xml" value="0.35104166666666664" />
       </map>
     </option>

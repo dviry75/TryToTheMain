@@ -22,10 +22,6 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".limitCredit"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".photoOfCradit"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

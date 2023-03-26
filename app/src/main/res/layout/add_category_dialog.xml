@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="כתוב את הקטיגוריה"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
+    <EditText
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="כתוב קטיגוריה"
+        android:id="@+id/writeCategory"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:layout_marginTop="20dp"
+        android:text="שמור"
+        android:textSize="25sp"
+        android:onClick="saveCategory"/>
+</LinearLayout>

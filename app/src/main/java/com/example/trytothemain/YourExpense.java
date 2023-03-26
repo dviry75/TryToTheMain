@@ -100,6 +100,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
     public void onClick(View view) {
         if(view == takeBill){
+            save.setVisibility(View.VISIBLE);
             Toast.makeText(this, "Work", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,0);
