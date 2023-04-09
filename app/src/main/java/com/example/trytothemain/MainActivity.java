@@ -103,8 +103,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (id == R.id.disconnectd) { //לבדוק את פונקציית היציאה מהאפליקציה
             Toast.makeText(this,"disconnectd", Toast.LENGTH_SHORT).show();
+
+            onDestroy();
             //Intent intent=new Intent(this,categoryActivity.class);
             //startActivity(intent);
+
+
 
             return true;
         }
