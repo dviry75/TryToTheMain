@@ -39,7 +39,7 @@
         app:showAsAction="never" />
 
     <item
-        android:title="התנתק "
+        android:title="יציאה "
         android:id="@+id/disconnectd"
         android:orderInCategory="600"
         app:showAsAction="never" />

@@ -10,14 +10,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class YourExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class YourExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 
     Spinner choose_category;
@@ -25,6 +27,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     Button takeBill , save;
     ImageView bill;
     Bitmap bitBill;
+    Switch saveLocation;
 
 
 
@@ -32,6 +35,15 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_expense);
+
+        saveLocation = (Switch)findViewById(R.id.save_location);
+        saveLocation.setOnCheckedChangeListener(this);
+
+
+
+
+
+
 
         takeBill = (Button) findViewById(R.id.take_invoicing);
         bill = (ImageView) findViewById(R.id.invoicing);
@@ -110,5 +122,13 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
         }
 
 
+    }
+
+
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) { // פעולת השמירת מיקום
+        if(b){
+            save.setVisibility(View.VISIBLE);
+
+        }
     }
 }
