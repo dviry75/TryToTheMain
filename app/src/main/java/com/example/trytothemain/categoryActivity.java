@@ -54,7 +54,7 @@ public class categoryActivity extends AppCompatActivity {
 
         categoryDialod.show();
 
-    }
+    }//חחחח
 
 
 
