@@ -37,7 +37,7 @@ public class categoryActivity extends AppCompatActivity {
 
 
 
-
+//585858
 
     public void addCategory(View view){
         createLoginDialog();
