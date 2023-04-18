@@ -95,7 +95,6 @@ public class photoOfCradit extends AppCompatActivity implements View.OnClickList
         takeCredit=(Button)carditPhotoDialog.findViewById(R.id.takeCredit);
         saveNewCreditDialog=(Button)carditPhotoDialog.findViewById(R.id.saveNewCredit);
         newCredit=(ImageView) carditPhotoDialog.findViewById(R.id.thePhotoNew);
-
         carditPhotoDialog.show();
 
     }

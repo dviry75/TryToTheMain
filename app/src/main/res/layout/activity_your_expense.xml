@@ -75,7 +75,7 @@
         android:id="@+id/take_invoicing"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/round_button"
         android:layout_marginTop="15dp"
         android:textSize="15sp"/>
     <ImageView
@@ -94,7 +94,7 @@
         android:id="@+id/saveBill"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/round_button"
         android:visibility="invisible"
         android:textSize="25sp"/>
 

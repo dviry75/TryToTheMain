@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:backgroundTint="#000000"
+            android:background="@drawable/round_button"
             android:onClick="yourExpense"
             android:text="הזן הוצאה"
             android:textColor="@color/white"
@@ -64,7 +64,7 @@
             android:id="@+id/all_money"
 
             android:onClick="allDetails"
-            android:backgroundTint="#000000"
+            android:background="@drawable/round_button"
             android:textColor="@color/white"
             android:textSize="20sp"
             />
