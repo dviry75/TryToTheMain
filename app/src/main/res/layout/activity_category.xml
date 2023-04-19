@@ -3,28 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:id="@+id/main"
     android:layout_height="match_parent"
     tools:context=".categoryActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textSize="35sp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:text="קטיגוריות"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="הוסף קטיגוריה"
-        android:background="@drawable/round_button"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/stroke_button"
+        android:textColor="@color/black"
+        android:text="קטיגוריית קניות"/>
 
-        android:layout_marginTop="30dp"
-        android:textSize="25sp"
-        android:onClick="addCategory"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/main"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="הוסף קטיגוריה"
+            android:background="@drawable/round_button"
+
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:onClick="addCategory"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="הוסף קטיגוריה"
+            android:background="@drawable/round_button"
+
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:onClick="removeCategory"
+            />
+
+
+
+
+
+    </LinearLayout>
+
 
 
 

@@ -17,6 +17,7 @@ public class categoryActivity extends AppCompatActivity {
     EditText writeCategory;
     String anotherCategory;
     LinearLayout main;
+
     TextView [] category = new TextView[10];
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +41,58 @@ public class categoryActivity extends AppCompatActivity {
 //585858
 
     public void addCategory(View view){
+
         createLoginDialog();
+
+
+
     }
+
+
 
     public void saveCategory(View view){
         anotherCategory = writeCategory.getText().toString();
-        categoryDialod.dismiss();
-        for (int i =0;i<category.length;i++){
-            if(category[i] == null){
-                category[i] = new TextView(this);
-                category[i].setText(anotherCategory);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100,100);
-                category[i].setLayoutParams(layoutParams);
-                main.addView(category[i]);
-                i++;
-            }
-            else Toast.makeText(this, "השתמשת בכל הקטיגוריות ", Toast.LENGTH_SHORT).show();
+        int index = returnNull(category);
+        if(index == 99){
+            Toast.makeText(this, "השתמשת בכל הקטיגוריות ", Toast.LENGTH_SHORT).show();
         }
+        else {
+            int num = index + 1;
+            category[index] = new TextView(this);
+            category[index].setText(num + ". " + anotherCategory);
+            category[index].setTextSize(40);
+            category[index].setTextColor(getResources().getColor(R.color.black));
+            int leftMargin = 5;
+            int topMargin = 0;
+            int rightMargin = 100;
+            int bottomMargin = 5;
+
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(750, 135);
+            layoutParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+            category[index].setLayoutParams(layoutParams);
+            main.addView(category[index]);
+
+        }
+        categoryDialod.dismiss();
+
     }
+
+
+    public void removeCategory(View view){
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,12 +100,24 @@ public class categoryActivity extends AppCompatActivity {
     {
         categoryDialod = new Dialog(this);
         categoryDialod.setContentView(R.layout.add_category_dialog);
-        categoryDialod.setTitle("Login");
-        categoryDialod.setCancelable(false);
+        categoryDialod.setTitle("הוספת קטיגוריה");
+        categoryDialod.setCancelable(true);
         writeCategory =(EditText)categoryDialod.findViewById(R.id.writeCategory);
-
         categoryDialod.show();
 
+
+
+    }
+
+
+
+    public int returnNull(TextView caegories[]){ // פעולה המקבלת את המערך של הקטיגוריות ומחזירה את הטקסט שריק
+        for(int i =0 ; i<category.length; i++){
+            if(category[i] == null){
+                return i;
+            }
+        }
+        return  99;
     }
 
 

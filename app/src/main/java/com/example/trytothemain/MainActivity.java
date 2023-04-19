@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.category) {
-            Toast.makeText(this,"you selected category", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,categoryActivity.class);
             startActivity(intent);
 
