@@ -16,16 +16,15 @@
         android:background="@drawable/stroke_button"
         android:textColor="@color/black"
         android:text="קטיגוריית קניות"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/category_lv"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/main"
-        android:layout_height="wrap_content">
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="125dp"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
@@ -42,9 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="הוסף קטיגוריה"
+            android:text="הסר קטיגוריה"
             android:background="@drawable/round_button"
-
+            android:layout_marginRight="5dp"
             android:layout_marginTop="30dp"
             android:textSize="25sp"
             android:onClick="removeCategory"

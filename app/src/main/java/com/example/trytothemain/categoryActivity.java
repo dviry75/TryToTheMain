@@ -1,3 +1,4 @@
+
 package com.example.trytothemain;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -5,29 +6,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class categoryActivity extends AppCompatActivity {
-    Dialog categoryDialod;
-    EditText writeCategory;
+    Dialog categoryDialod , removeCategoryDialod;
+    EditText writeCategory , removeDialogCategory;
     String anotherCategory;
     LinearLayout main;
+    ArrayAdapter<String> dataAdapter;
+    List<String> category = new ArrayList<String>();
+    ListView categoryLV;
+    int num = 0;
 
-    TextView [] category = new TextView[10];
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        main = (LinearLayout) findViewById(R.id.main);
-
-
-
-
+        categoryLV = findViewById(R.id.category_lv);
 
     }
 
@@ -41,49 +47,43 @@ public class categoryActivity extends AppCompatActivity {
 //585858
 
     public void addCategory(View view){
-
-        createLoginDialog();
-
-
-
+        createAddCategoryDialog();
     }
 
 
 
     public void saveCategory(View view){
-        anotherCategory = writeCategory.getText().toString();
-        int index = returnNull(category);
-        if(index == 99){
-            Toast.makeText(this, "השתמשת בכל הקטיגוריות ", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            int num = index + 1;
-            category[index] = new TextView(this);
-            category[index].setText(num + ". " + anotherCategory);
-            category[index].setTextSize(40);
-            category[index].setTextColor(getResources().getColor(R.color.black));
-            int leftMargin = 5;
-            int topMargin = 0;
-            int rightMargin = 100;
-            int bottomMargin = 5;
 
+        category.add(num+1 + ". " +writeCategory.getText().toString()); //כשתתחרט שעשית את זה פנה אליי
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.item_category, category);
+        categoryLV.setAdapter(dataAdapter);
 
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(750, 135);
-            layoutParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
-            category[index].setLayoutParams(layoutParams);
-            main.addView(category[index]);
-
-        }
         categoryDialod.dismiss();
-
+        num++;
     }
 
 
     public void removeCategory(View view){
+        createRemoveCategoryDialog();
+    }
+
+    public void saveRemoveCategory(View view){
+        if(num < 0){
+            Toast.makeText(this, "אין קטיגוריות למחיקה", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            category.remove(Integer.parseInt(removeDialogCategory.getText().toString())-1);
+            dataAdapter = new ArrayAdapter<>(this, R.layout.item_category, category);
+            categoryLV.setAdapter(dataAdapter);
+            num--;
+            removeCategoryDialod.dismiss();
+
+        }
+
+    }
 
 
 
-    }//dd
 
 
 
@@ -91,12 +91,18 @@ public class categoryActivity extends AppCompatActivity {
 
 
 
+    public void createRemoveCategoryDialog() //פונקציית פתיחת הדיאלוג של המחיקה
+    {
+        removeCategoryDialod = new Dialog(this);
+        removeCategoryDialod.setContentView(R.layout.remove_category);
+        removeCategoryDialod.setTitle("מחיקת קטיגוריה");
+        removeCategoryDialod.setCancelable(true);
+        removeDialogCategory =(EditText)removeCategoryDialod.findViewById(R.id.removeET);
+        removeCategoryDialod.show();
+    }
 
 
-
-
-
-    public void createLoginDialog() //פונקציית פתיחת הדיאלוג
+    public void createAddCategoryDialog() //פונקציית פתיחת הדיאלוג של ההוספה
     {
         categoryDialod = new Dialog(this);
         categoryDialod.setContentView(R.layout.add_category_dialog);
@@ -107,17 +113,6 @@ public class categoryActivity extends AppCompatActivity {
 
 
 
-    }
-
-
-
-    public int returnNull(TextView caegories[]){ // פעולה המקבלת את המערך של הקטיגוריות ומחזירה את הטקסט שריק
-        for(int i =0 ; i<category.length; i++){
-            if(category[i] == null){
-                return i;
-            }
-        }
-        return  99;
     }
 
 
