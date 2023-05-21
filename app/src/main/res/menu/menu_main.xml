@@ -32,11 +32,6 @@
         android:id="@+id/loans"
         app:showAsAction="never" />
 
-    <item
-        android:title="הגבלת הוצאות"
-        android:orderInCategory="500"
-        android:id="@+id/limit_shopping"
-        app:showAsAction="never" />
 
     <item
         android:title="יציאה "

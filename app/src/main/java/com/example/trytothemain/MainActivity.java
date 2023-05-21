@@ -15,9 +15,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText jj;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
     }
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void allDetails(View v){
-        Intent intent=new Intent(this,DetailsMoney.class);
+        Intent intent = new Intent(this,DetailsMoney.class);
         startActivity(intent);
 
     }
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         else if (id == R.id.equal_month) {
-            Toast.makeText(this,"you selected month", Toast.LENGTH_SHORT).show();
+            Message.message(getApplicationContext() ,"you selected month" );
             Intent intent=new Intent(this,compareMonth.class);
             startActivity(intent);
 
@@ -99,15 +102,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             return true;
         }
-        else if (id == R.id.disconnectd) { //לבדוק את פונקציית היציאה מהאפליקציה
-            Toast.makeText(this,"disconnectd", Toast.LENGTH_SHORT).show();
 
-            onDestroy();
+        else if (id == R.id.disconnectd) { //בוצע פונקציית סגירת האפליקציה
+            Message.message(getApplicationContext() ,"disconnectd" );
+
+            finish();
             //Intent intent=new Intent(this,categoryActivity.class);
             //startActivity(intent);
-
-
-
             return true;
         }
 

@@ -2,6 +2,7 @@ package com.example.trytothemain;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -21,6 +23,9 @@ import java.util.List;
 
 public class YourExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
+    All_Data expenses = new All_Data();
+    myDbAdapter helper1 = new myDbAdapter(this);
+
 
     Spinner choose_category;
     List<String> category;
@@ -28,6 +33,12 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     ImageView bill;
     Bitmap bitBill;
     Switch saveLocation;
+    EditText etDescription;
+
+    String nameOfCategory;
+    ArrayAdapter<String> dataAdapter ;
+
+
 
 
 
@@ -43,13 +54,12 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
 
 
-
+        etDescription = (EditText)findViewById(R.id.et_description);
 
         takeBill = (Button) findViewById(R.id.take_invoicing);
         bill = (ImageView) findViewById(R.id.invoicing);
         takeBill.setOnClickListener(YourExpense.this);
         save = (Button) findViewById(R.id.saveBill);
-        save.setOnClickListener(YourExpense.this);
 
         //עשיית הקטיוגריות באובייקט ספינר
         choose_category = (Spinner) findViewById(R.id.open_category);  // לבדוק איך מעדכנים מאקטביטי אחר
@@ -58,7 +68,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
         category.add("אוכל");
         category.add("כלי מטבח");
         category.add("חברים");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, category);
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, category);
         choose_category.setAdapter(dataAdapter);
         choose_category.setOnItemSelectedListener(this);
 
@@ -74,6 +84,26 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -104,7 +134,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
     //הפונקצייה של האובייקט ספינר
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //String item = parent.getItemAtPosition(position).toString();    //בדיקה איך קוראים לפריט
+        nameOfCategory = parent.getItemAtPosition(position).toString();    //בדיקה איך קוראים לפריט
 
     }
     public void onNothingSelected(AdapterView<?> parent) {
@@ -113,17 +143,42 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     public void onClick(View view) {
         if(view == takeBill){
             save.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Work", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Message.message(getApplicationContext() , "Work");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,0);
         }
-        if(view == save){
-
-        }
-
 
     }
 
+    public void saveExpense(View view){// t1 וt2 הם התיאור והקטיגוריה שכרגע אני רוצה להכניס לדאטה בייס
+        String totalDescribation = etDescription.getText().toString();
+        if(totalDescribation.isEmpty() || nameOfCategory.isEmpty())
+        {
+            Message.message(getApplicationContext(),"Enter Both Name and Password");
+        }
+        else {
+            /*long id =helper1.insertData(totalDescribation, nameOfCategory);
+            if(id<=0)
+            {
+                Message.message(getApplicationContext(),"Insertion Unsuccessful");
+
+            }
+            else
+            {
+                Message.message(getApplicationContext(),"Insertion Successful");
+            }*/
+
+            expenses.insert(totalDescribation, nameOfCategory);
+
+        }
+
+
+
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+
+
+    }
 
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) { // פעולת השמירת מיקום
         if(b){
