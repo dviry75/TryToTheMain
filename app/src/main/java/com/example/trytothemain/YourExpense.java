@@ -23,9 +23,7 @@ import java.util.List;
 
 public class YourExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    All_Data expenses = new All_Data();
-    myDbAdapter helper1 = new myDbAdapter(this);
-
+    All_Data expenses = new All_Data(this);
 
     Spinner choose_category;
     List<String> category;
@@ -157,7 +155,9 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
             Message.message(getApplicationContext(),"Enter Both Name and Password");
         }
         else {
-            /*long id =helper1.insertData(totalDescribation, nameOfCategory);
+
+
+            long id = expenses.insert(totalDescribation, nameOfCategory);
             if(id<=0)
             {
                 Message.message(getApplicationContext(),"Insertion Unsuccessful");
@@ -166,10 +166,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
             else
             {
                 Message.message(getApplicationContext(),"Insertion Successful");
-            }*/
-
-            expenses.insert(totalDescribation, nameOfCategory);
-
+            }
         }
 
 

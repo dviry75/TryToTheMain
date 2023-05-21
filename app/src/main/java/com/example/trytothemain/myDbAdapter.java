@@ -53,12 +53,14 @@ public class myDbAdapter {
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
             String name =cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
             String  password =cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DESCRIPTION));
-            buffer.append(cid+ "   " + name + "   " + password +" \n");
+            buffer.append( "   " + name + "   " + password +" \n");
         }
         return buffer.toString();
     }
 
-    public  int delete(String uname)
+
+
+    public int delete(String uname)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs ={uname};
@@ -75,6 +77,13 @@ public class myDbAdapter {
         String str_sql = "delete from " + myDbHelper.TABLE_NAME + " where " + myDbHelper.UID  + " = "  + rowId ;
         dv.execSQL(str_sql);
     }
+
+    public void deleteAllRows() {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        db.delete(myDbHelper.TABLE_NAME, null, null);
+        db.close();
+    }
+
 
 
 

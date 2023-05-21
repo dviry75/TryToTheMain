@@ -21,8 +21,6 @@ import java.util.List;
 public class categoryActivity extends AppCompatActivity {
     Dialog categoryDialod , removeCategoryDialod;
     EditText writeCategory , removeDialogCategory;
-    String anotherCategory;
-    LinearLayout main;
     ArrayAdapter<String> dataAdapter;
     List<String> category = new ArrayList<String>();
     ListView categoryLV;
@@ -44,9 +42,9 @@ public class categoryActivity extends AppCompatActivity {
 
 
 
-//585858
 
     public void addCategory(View view){
+
         createAddCategoryDialog();
     }
 
