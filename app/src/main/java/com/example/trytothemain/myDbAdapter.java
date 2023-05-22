@@ -84,6 +84,31 @@ public class myDbAdapter {
         db.close();
     }
 
+    public String getLastInsertedData() {
+        SQLiteDatabase db = myhelper.getReadableDatabase();
+        String query = "SELECT " + myDbHelper.COLUMN_DESCRIPTION + ", " + myDbHelper.COLUMN_CATEGORY +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.UID + " = (SELECT MAX(" + myDbHelper.UID + ") FROM " + myDbHelper.TABLE_NAME + ")";
+        Cursor cursor = db.rawQuery(query, null);
+
+        String lastInsertedCategory = null;
+        String lastInsertedDescription = null;
+
+        if (cursor.moveToFirst()) {
+            lastInsertedCategory = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DESCRIPTION));
+            lastInsertedDescription = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
+        }
+
+        cursor.close();
+        db.close();
+
+        // You can use the retrieved values here or create an object to hold them
+        // and return the object instead.
+        return "Category: " + lastInsertedCategory + ", Description: " + lastInsertedDescription;
+    }
+
+
+
 
 
 

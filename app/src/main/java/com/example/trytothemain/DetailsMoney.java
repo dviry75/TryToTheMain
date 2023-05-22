@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DetailsMoney extends  AppCompatActivity  {
@@ -40,19 +41,46 @@ public class DetailsMoney extends  AppCompatActivity  {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
 
 
 
     public void deleteAll(View view){
-        expenses.deleteAllRows();
-        expensesList.remove(0);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
-        expenseTv.setAdapter(dataAdapter);
+        if(expensesList.isEmpty()){
+            Message.message(getApplicationContext() , "אין מה למחוק הכל ריק");
+        }
+        else{
+            expenses.deleteAllRows();
+            expensesList.remove(0);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
+            expenseTv.setAdapter(dataAdapter);
+        }
 
 
 
     }
+
+
+
+
+
+
+
+
 
 
 

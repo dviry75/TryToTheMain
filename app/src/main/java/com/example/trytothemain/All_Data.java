@@ -45,7 +45,14 @@ public class All_Data extends AppCompatActivity {
 
 
     public void deleteAllRows(){
+
         helper.deleteAllRows();
+    }
+
+
+
+    public String getLastInsertedData(){
+        return helper.getLastInsertedData();
     }
 
 

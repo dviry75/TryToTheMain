@@ -141,7 +141,6 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     public void onClick(View view) {
         if(view == takeBill){
             save.setVisibility(View.VISIBLE);
-        Message.message(getApplicationContext() , "Work");
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,0);
         }
@@ -152,7 +151,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
         String totalDescribation = etDescription.getText().toString();
         if(totalDescribation.isEmpty() || nameOfCategory.isEmpty())
         {
-            Message.message(getApplicationContext(),"Enter Both Name and Password");
+            Message.message(getApplicationContext(),"לא הכנסת את כל הפרטים");
         }
         else {
 
@@ -160,19 +159,20 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
             long id = expenses.insert(totalDescribation, nameOfCategory);
             if(id<=0)
             {
-                Message.message(getApplicationContext(),"Insertion Unsuccessful");
+                Message.message(getApplicationContext(),"השמירה נכשלה");
 
             }
             else
             {
-                Message.message(getApplicationContext(),"Insertion Successful");
+                Message.message(getApplicationContext(),"נשמר בהצלחה");
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
             }
         }
 
 
 
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+
 
 
     }
