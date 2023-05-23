@@ -31,31 +31,16 @@ public class DetailsMoney extends  AppCompatActivity  {
         setContentView(R.layout.activity_details_money);
 
         expenseTv = (ListView)findViewById(R.id.listView);
-        String allExpenses = expenses.getData();
-        expensesList.add(allExpenses);
+        expensesList = expenses.getArrayData();
+        //String allExpenses = expenses.getData();
+       // expensesList.add(allExpenses);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
         expenseTv.setAdapter(dataAdapter);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
 
 
 
@@ -65,7 +50,8 @@ public class DetailsMoney extends  AppCompatActivity  {
         }
         else{
             expenses.deleteAllRows();
-            expensesList.remove(0);
+            expensesList = expenses.getArrayData();
+            expensesList.clear();
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
             expenseTv.setAdapter(dataAdapter);
         }

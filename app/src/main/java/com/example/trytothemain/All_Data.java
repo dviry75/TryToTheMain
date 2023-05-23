@@ -31,8 +31,8 @@ public class All_Data extends AppCompatActivity {
 
     }
 
-    public long insert(String desc, String cate) {
-        long id = helper.insertData(desc, cate);
+    public long insert(int cost , String desc, String cate) {
+        long id = helper.insertData(cost , desc, cate);
         return id;
     }
 
@@ -52,7 +52,12 @@ public class All_Data extends AppCompatActivity {
 
 
     public String getLastInsertedData(){
+
         return helper.getLastInsertedData();
+    }
+
+    public ArrayList<String> getArrayData(){
+        return  helper.getArrayData();
     }
 
 

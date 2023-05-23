@@ -28,6 +28,7 @@
         android:textSize="25sp"
         android:layout_marginTop="20dp"
         android:inputType="number"
+        android:id="@+id/et_cost"
         android:textColorHint="@color/black"
         android:hint="ההוצאה:"/>
     <Spinner

@@ -31,7 +31,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     ImageView bill;
     Bitmap bitBill;
     Switch saveLocation;
-    EditText etDescription;
+    EditText etDescription , etCost;
 
     String nameOfCategory;
     ArrayAdapter<String> dataAdapter ;
@@ -53,6 +53,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
 
         etDescription = (EditText)findViewById(R.id.et_description);
+        etCost = (EditText)findViewById(R.id.et_cost);
 
         takeBill = (Button) findViewById(R.id.take_invoicing);
         bill = (ImageView) findViewById(R.id.invoicing);
@@ -148,27 +149,35 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void saveExpense(View view){// t1 וt2 הם התיאור והקטיגוריה שכרגע אני רוצה להכניס לדאטה בייס
-        String totalDescribation = etDescription.getText().toString();
-        if(totalDescribation.isEmpty() || nameOfCategory.isEmpty())
+        if(etCost.getText().toString().isEmpty())
         {
             Message.message(getApplicationContext(),"לא הכנסת את כל הפרטים");
         }
         else {
-
-
-            long id = expenses.insert(totalDescribation, nameOfCategory);
-            if(id<=0)
+            int yourCost = Integer.valueOf(etCost.getText().toString());
+            String totalDescribation = etDescription.getText().toString();
+            if(totalDescribation.isEmpty() || nameOfCategory.isEmpty() || etCost.getText().toString().isEmpty())
             {
-                Message.message(getApplicationContext(),"השמירה נכשלה");
-
+                Message.message(getApplicationContext(),"לא הכנסת את כל הפרטים");
             }
-            else
-            {
-                Message.message(getApplicationContext(),"נשמר בהצלחה");
-                Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
+            else {
+
+
+                long id = expenses.insert(yourCost ,totalDescribation, nameOfCategory);
+                if(id<=0)
+                {
+                    Message.message(getApplicationContext(),"השמירה נכשלה");
+
+                }
+                else
+                {
+                    Message.message(getApplicationContext(),"נשמר בהצלחה");
+                    Intent intent = new Intent(this,MainActivity.class);
+                    startActivity(intent);
+                }
             }
         }
+
 
 
 
