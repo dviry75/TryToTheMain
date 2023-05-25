@@ -21,14 +21,16 @@ public class myDbAdapter {
 
 
 
-    public long insertData(int cost , String cate, String desc)
+    public long insertData(Integer cost , String cate, String desc )
     {
         SQLiteDatabase dbb = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.COLUMN_COST, cost);
         contentValues.put(myDbHelper.COLUMN_CATEGORY, cate);
         contentValues.put(myDbHelper.COLUMN_DESCRIPTION, desc);
-        long id = dbb.insert(myDbHelper.TABLE_NAME, null , contentValues);
+        String yourDate = CurrentDate.currentDate();
+        contentValues.put(myDbHelper.COLUMN_DATE, yourDate);
+        long id = dbb.insert(myDbHelper.TABLE_NAME , null , contentValues);
         return id;
     }
 
@@ -128,10 +130,9 @@ public class myDbAdapter {
     public ArrayList<String> getArrayData(){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ArrayList<String> helperGetArrayData = new ArrayList<>();
-        String query = "SELECT category, description FROM " + myDbHelper.TABLE_NAME;
+        String query = "SELECT cost, category, description FROM " + myDbHelper.TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
-
-        int arrayCost = 0;
+        Integer arrayCost = 0;
         String arrayCate = null;
         String arrayDesc = null;
 
@@ -144,7 +145,7 @@ public class myDbAdapter {
 
 
 
-            String getArrayDescirbationAndCategory = String.valueOf(arrayCost) +" "+ arrayCate + " " + arrayDesc;
+            String getArrayDescirbationAndCategory =  "ההוצאה: " + String.valueOf(arrayCost) +" , הקטיגוריה: "+ arrayCate + " , תיאור ההוצאה: " + arrayDesc;
 
             helperGetArrayData.add(getArrayDescirbationAndCategory);
         }
@@ -172,6 +173,10 @@ public class myDbAdapter {
         int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.COLUMN_CATEGORY+" = ?",whereArgs );
         return count;
     }
+
+
+
+
     static class myDbHelper extends SQLiteOpenHelper
     {
         private static final String DATABASE_NAME = "myDatabase";    // Database Name
@@ -181,9 +186,12 @@ public class myDbAdapter {
         private static final String COLUMN_COST = "cost"; //Column II
         private static final String COLUMN_CATEGORY = "category";    //Column III
         private static final String COLUMN_DESCRIPTION= "description";    // Column IIII
+        private static final String COLUMN_DATE = "date"; // Column IIIII
         private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
-                " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_COST + " INTEGER, " + COLUMN_CATEGORY +
-                " VARCHAR(255), " + COLUMN_DESCRIPTION + " VARCHAR(225));";
+                " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_COST + " INTEGER, " +
+                COLUMN_DATE + " VARCHAR(255), " + COLUMN_CATEGORY + " VARCHAR(255), " +
+                COLUMN_DESCRIPTION + " VARCHAR(255));";
+
         private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
         private Context context;
 

@@ -11,4 +11,13 @@ public class CurrentDate {
         String currentDate = String.valueOf(day) + ".0" + String.valueOf(month+1) + "." + String.valueOf(year);
         return currentDate;
     }
+    public static String currentMonth(){
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH); // Note: Month starts from 0 (January is 0)
+
+        String currentMonth = "0" + String.valueOf(month+1);
+        return currentMonth;
+    }
+
+
 }

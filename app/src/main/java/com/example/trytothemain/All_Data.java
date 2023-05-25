@@ -31,7 +31,7 @@ public class All_Data extends AppCompatActivity {
 
     }
 
-    public long insert(int cost , String desc, String cate) {
+    public long insert(int cost , String desc, String cate ) {
         long id = helper.insertData(cost , desc, cate);
         return id;
     }

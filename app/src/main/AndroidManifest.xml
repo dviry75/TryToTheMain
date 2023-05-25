@@ -36,10 +36,6 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".compareMonth"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".categoryActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

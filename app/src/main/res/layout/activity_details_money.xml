@@ -16,10 +16,11 @@
         android:layout_width="match_parent"
         android:gravity="right"
         android:layout_marginRight="15dp"
+        android:id="@+id/your_month"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="פירוט החודש - " />
+        android:text="הוצאת החודש - " />
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

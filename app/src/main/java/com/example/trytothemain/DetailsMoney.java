@@ -30,6 +30,10 @@ public class DetailsMoney extends  AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_money);
 
+
+
+        tv = (TextView)findViewById(R.id.your_month);
+        tv.setText(CurrentDate.currentDate() + " הוצאת החודש - ");
         expenseTv = (ListView)findViewById(R.id.listView);
         expensesList = expenses.getArrayData();
         //String allExpenses = expenses.getData();
@@ -59,18 +63,6 @@ public class DetailsMoney extends  AppCompatActivity  {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

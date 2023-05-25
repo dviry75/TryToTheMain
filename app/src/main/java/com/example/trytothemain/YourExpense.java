@@ -162,7 +162,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
             }
             else {
 
-
+                //String yourDate = CurrentDate.currentDate();
                 long id = expenses.insert(yourCost ,totalDescribation, nameOfCategory);
                 if(id<=0)
                 {
@@ -172,8 +172,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
                 else
                 {
                     Message.message(getApplicationContext(),"נשמר בהצלחה");
-                    Intent intent = new Intent(this,MainActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
             }
         }
@@ -192,4 +191,7 @@ public class YourExpense extends AppCompatActivity implements AdapterView.OnItem
 
         }
     }
+
+
+
 }

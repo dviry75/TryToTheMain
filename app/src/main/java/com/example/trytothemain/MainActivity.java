@@ -1,5 +1,6 @@
 package com.example.trytothemain;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,49 +32,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
+
+
+
+
+
     public void allDetails(View v){
         Intent intent = new Intent(this,DetailsMoney.class);
         startActivity(intent);
-
-    }
-
-
-
-
+    } // פתיחת מסך פירוט
     public void yourExpense(View v){
         Intent intent=new Intent(this,YourExpense.class);
         startActivity(intent);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    } // פתיחת מסך הזנת הוצאה
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return  true;
     }
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.category) {
             Intent intent=new Intent(this,categoryActivity.class);
@@ -81,22 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             return true;
         }
-        else if (id == R.id.equal_month) {
-            Message.message(getApplicationContext() ,"you selected month" );
-            Intent intent=new Intent(this,compareMonth.class);
-            startActivity(intent);
-
-            return true;
-        }
-        else if (id == R.id.calendar_equale) {
-            Toast.makeText(this,"you selected calendar", Toast.LENGTH_SHORT).show(); //לבדוק איך עושים לוח שנה שממנו אפשר להגיע בלחיצת כפתור לפירוט ההוצאות באותו היום
-            //Intent intent=new Intent(this,categoryActivity.class);
-            //startActivity(intent);
-
-            return true;
-        }
         else if (id == R.id.loans) {
-            Toast.makeText(this,"you selected loans", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,loansActivity.class);
             startActivity(intent);
 
@@ -113,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         else if (id == R.id.view_card) { // לבדוק בפעם הראשונה הגדרת כרטיס.
-            Toast.makeText(this,"you selected your card", Toast.LENGTH_SHORT).show();// לבדוק אם אפשר לשים שם עוד סיסמא
             Intent intent=new Intent(this,photoOfCradit.class);
             startActivity(intent);
 
@@ -121,9 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return true;
-    }
-
-
+    } // בחירת האופציות התפריט למעלה
 
 }
 
