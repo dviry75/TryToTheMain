@@ -160,26 +160,9 @@ public class myDbAdapter {
 
 
 
-
-
-
-
-    public int updateName(String oldName , String newName)
-    {
-        SQLiteDatabase db = myhelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(myDbHelper.COLUMN_CATEGORY,newName);
-        String[] whereArgs= {oldName};
-        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.COLUMN_CATEGORY+" = ?",whereArgs );
-        return count;
-    }
-
-
-
-
     static class myDbHelper extends SQLiteOpenHelper
     {
-        private static final String DATABASE_NAME = "myDatabase";    // Database Name
+        private static final String DATABASE_NAME = "myDatabaseExpenses";    // Database Name
         private static final String TABLE_NAME = "Expense";   // Table Name
         private static final int DATABASE_Version = 1;   // Database Version
         private static final String UID="_id";     // Column I (Primary Key)

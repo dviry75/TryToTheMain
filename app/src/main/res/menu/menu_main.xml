@@ -20,11 +20,7 @@
 <!--        android:orderInCategory="300"-->
 <!--        app:showAsAction="never" />-->
 
-    <item
-        android:title="הכרטיס שלך"
-        android:orderInCategory="400"
-        android:id="@+id/view_card"
-        app:showAsAction="never" />
+   
 
     <item
         android:title="הלוואות"

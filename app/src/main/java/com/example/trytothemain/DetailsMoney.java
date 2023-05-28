@@ -35,11 +35,16 @@ public class DetailsMoney extends  AppCompatActivity  {
         tv = (TextView)findViewById(R.id.your_month);
         tv.setText(CurrentDate.currentDate() + " הוצאת החודש - ");
         expenseTv = (ListView)findViewById(R.id.listView);
-        expensesList = expenses.getArrayData();
-        //String allExpenses = expenses.getData();
-       // expensesList.add(allExpenses);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
-        expenseTv.setAdapter(dataAdapter);
+        if(expenses.getArrayData() == null){
+
+        }
+        else{
+            expensesList = expenses.getArrayData();
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_expenses, expensesList);
+            expenseTv.setAdapter(dataAdapter);
+
+
+        }
 
 
 

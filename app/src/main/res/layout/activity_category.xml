@@ -22,47 +22,15 @@
         android:id="@+id/category_lv"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="הוסף קטיגוריה"
-            android:background="@drawable/round_button"
-
-            android:layout_marginTop="30dp"
-            android:textSize="25sp"
-            android:onClick="addCategory"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="הסר קטיגוריה"
-            android:background="@drawable/round_button"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="30dp"
-            android:textSize="25sp"
-            android:onClick="removeCategory"
-            />
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="הוסף קטיגוריה"
+        android:background="@drawable/round_button"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:onClick="addCategory"
+        />
 
 </LinearLayout>

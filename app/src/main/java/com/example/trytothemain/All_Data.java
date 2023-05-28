@@ -24,11 +24,8 @@ import java.util.List;
 
 public class All_Data extends AppCompatActivity {
     myDbAdapter helper;
-
     public All_Data(Context context) {
-
         helper = new myDbAdapter(context);
-
     }
 
     public long insert(int cost , String desc, String cate ) {

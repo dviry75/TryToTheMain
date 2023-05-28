@@ -28,6 +28,7 @@
         android:background="@drawable/stroke_button"
         android:layout_marginTop="20dp"
         android:text="שמור"
+        android:onClick="saveCategory"
         android:textSize="25sp"
         />
 </LinearLayout>

@@ -28,10 +28,6 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".photoOfCradit"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".loansActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

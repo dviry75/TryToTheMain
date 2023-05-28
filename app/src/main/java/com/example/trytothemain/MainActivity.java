@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     EditText jj;
-//5555
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //startActivity(intent);
             return true;
         }
-
-        else if (id == R.id.view_card) { // לבדוק בפעם הראשונה הגדרת כרטיס.
-            Intent intent=new Intent(this,photoOfCradit.class);
-            startActivity(intent);
-
-            return true;
-        }
-
         return true;
     } // בחירת האופציות התפריט למעלה
 
