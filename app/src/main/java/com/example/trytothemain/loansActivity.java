@@ -15,23 +15,66 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class loansActivity extends AppCompatActivity {
     private static final int REQUEST_CONTACTS_PERMISSION = 1;
-
+    LoanHelper loans = new LoanHelper(this);
     Button callNumber;
     TextView nameContacts;
+    EditText etContacts , etSum;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loans);
         callNumber = (Button) findViewById(R.id.callNumber);
         nameContacts = (TextView) findViewById(R.id.nameContacts);
+        etContacts = (EditText) findViewById(R.id.name_contact);
+        etSum = (EditText) findViewById(R.id.loan_price);
 
 
     }
+
+
+
+    public void saveLoans(View view){
+        if (etSum.getText().toString().equals(null) || etContacts.getText().toString().equals(null)|| callNumber.getText().toString().equals(null)){
+            Message.message(getApplicationContext() ,"לא הכנסת את כל הפרטים");
+        }
+        else{
+            int sum = Integer.valueOf(etSum.getText().toString());
+            int phone = Integer.valueOf(callNumber.getText().toString());
+            String name = etContacts.getText().toString();
+            long id = loans.insert(name , sum , phone);
+            if(id<=0)
+            {
+                Message.message(getApplicationContext(),"השמירה נכשלה");
+
+            }
+            else
+            {
+                Message.message(getApplicationContext(),"נשמר בהצלחה");
+                etSum.setText(null);
+                etContacts.setText(null);
+                callNumber.setVisibility(View.INVISIBLE);
+                callNumber.setText(null);
+                finish();
+            }
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -44,13 +87,8 @@ public class loansActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.READ_CONTACTS},
                         REQUEST_CONTACTS_PERMISSION);
-            } else {
-                // Permission already granted, do your contacts-related work here
-                Toast.makeText(this, "Contacts permission granted!", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            // Permission not needed for lower SDK versions, do your contacts-related work here
-            Toast.makeText(this, "Contacts permission granted!", Toast.LENGTH_SHORT).show();
+
         }
 
         showContactsPicker();
@@ -99,6 +137,7 @@ public class loansActivity extends AppCompatActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, // הפעולה של בקשת ההרשאה
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CONTACTS_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, do your contacts-related work here
@@ -148,7 +187,7 @@ public class loansActivity extends AppCompatActivity {
                     phones.close();
                     cursor.close();
                     callNumber.setText(phoneNum);
-                    Toast.makeText(this, "יש מספר טלפון", Toast.LENGTH_SHORT).show();
+
                 }
 
 

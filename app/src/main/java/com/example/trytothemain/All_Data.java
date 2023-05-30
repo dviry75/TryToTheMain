@@ -25,6 +25,7 @@ import java.util.List;
 public class All_Data extends AppCompatActivity {
     myDbAdapter helper;
     public All_Data(Context context) {
+
         helper = new myDbAdapter(context);
     }
 
