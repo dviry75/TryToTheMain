@@ -42,7 +42,7 @@ public class DetailsLoans extends AppCompatActivity implements AdapterView.OnIte
 
         if(loans.getArrayData().isEmpty()){
             Message.message(getApplicationContext() , "אין הלוואות");
-        }
+        }//fff
         else{
             LoanList = loans.getArrayData();
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.list_loans, LoanList);

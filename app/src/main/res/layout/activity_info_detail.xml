@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_height="match_parent"
     tools:context=".infoDetail">
 
@@ -65,32 +66,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-
+        android:padding="16dp"
         android:layout_marginTop="20dp"
-
         android:orientation="horizontal">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:background="@drawable/stroke_button"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:text="מחק הוצאה"
-
             android:textSize="22sp"
             android:onClick="removeExpense"
             android:id="@+id/delete_category"
             />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="פתח מיקום"
-            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:onClick="openLocation"
             android:textColor="@color/black"
             android:background="@drawable/stroke_button"
             android:textSize="22sp"
             />
+
     </LinearLayout>
 
     <TextView
@@ -102,6 +104,7 @@
         android:text="קבלה --> "
         android:textColor="@color/black"
         android:textSize="35sp" />
+
     <ImageView
         android:layout_gravity="center"
         android:layout_width="300dp"
