@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.loader.content.CursorLoader;
 
 import android.content.Intent;
@@ -19,12 +20,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class loansActivity extends AppCompatActivity {
+public class editLoansActivity extends AppCompatActivity {
     private static final int REQUEST_CONTACTS_PERMISSION = 1;
     LoanHelper loans = new LoanHelper(this);
     Button callNumber;
     TextView nameContacts;
     EditText etContacts , etSum;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +42,12 @@ public class loansActivity extends AppCompatActivity {
 
 
     public void saveLoans(View view){
-        if (etSum.getText().toString().equals(null) || etContacts.getText().toString().equals(null)|| callNumber.getText().toString().equals(null)){
+        if (etSum.getText().toString().isEmpty() || etContacts.getText().toString().isEmpty()|| callNumber.getText().toString().isEmpty()){
             Message.message(getApplicationContext() ,"לא הכנסת את כל הפרטים");
         }
         else{
             int sum = Integer.valueOf(etSum.getText().toString());
-            int phone = Integer.valueOf(callNumber.getText().toString());
+            String phone = callNumber.getText().toString();
             String name = etContacts.getText().toString();
             long id = loans.insert(name , sum , phone);
             if(id<=0)
@@ -201,38 +203,6 @@ public class loansActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

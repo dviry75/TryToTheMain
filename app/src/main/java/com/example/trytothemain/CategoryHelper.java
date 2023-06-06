@@ -34,5 +34,9 @@ public class CategoryHelper {
 
     }
 
+    public ArrayList<String> getArrayCategory(){
+        return  helper.getArrayCategory();
+    }
+
 
 }

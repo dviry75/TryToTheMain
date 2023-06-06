@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -21,7 +20,49 @@ public class myDbAdapter {
 
 
 
-    public long insertData(Integer cost , String cate, String desc )
+    public long insertData(Integer cost , String cate, String desc, String location , byte[] imageBytes)
+    {
+        SQLiteDatabase dbb = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(myDbHelper.COLUMN_COST, cost);
+        contentValues.put(myDbHelper.COLUMN_CATEGORY, cate);
+        contentValues.put(myDbHelper.COLUMN_DESCRIPTION, desc);
+        String yourDate = CurrentDate.currentDate();
+        contentValues.put(myDbHelper.COLUMN_DATE, yourDate);
+        contentValues.put(myDbHelper.COLUMN_LOCATION , location);
+        contentValues.put(myDbHelper.COLUMN_BILL , imageBytes);
+        long id = dbb.insert(myDbHelper.TABLE_NAME , null , contentValues);
+        return id;
+    }
+    public long insertDataWithoutLocation(Integer cost , String cate, String desc , byte[] imageBytes)
+    {
+        SQLiteDatabase dbb = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(myDbHelper.COLUMN_COST, cost);
+        contentValues.put(myDbHelper.COLUMN_CATEGORY, cate);
+        contentValues.put(myDbHelper.COLUMN_DESCRIPTION, desc);
+        String yourDate = CurrentDate.currentDate();
+        contentValues.put(myDbHelper.COLUMN_DATE, yourDate);
+        contentValues.put(myDbHelper.COLUMN_BILL , imageBytes);
+        long id = dbb.insert(myDbHelper.TABLE_NAME , null , contentValues);
+        return id;
+    }
+
+    public long insertDataWithoutBill(Integer cost , String cate, String desc , String location)
+    {
+        SQLiteDatabase dbb = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(myDbHelper.COLUMN_COST, cost);
+        contentValues.put(myDbHelper.COLUMN_CATEGORY, cate);
+        contentValues.put(myDbHelper.COLUMN_DESCRIPTION, desc);
+        String yourDate = CurrentDate.currentDate();
+        contentValues.put(myDbHelper.COLUMN_DATE, yourDate);
+        contentValues.put(myDbHelper.COLUMN_LOCATION , location);
+        long id = dbb.insert(myDbHelper.TABLE_NAME , null , contentValues);
+        return id;
+    }
+
+    public long insertDataJustInfo(Integer cost , String cate, String desc)
     {
         SQLiteDatabase dbb = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -33,6 +74,8 @@ public class myDbAdapter {
         long id = dbb.insert(myDbHelper.TABLE_NAME , null , contentValues);
         return id;
     }
+
+
 
 
 
@@ -54,12 +97,11 @@ public class myDbAdapter {
     public String getData()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] columns = {myDbHelper.UID,myDbHelper.COLUMN_COST,myDbHelper.COLUMN_CATEGORY,myDbHelper.COLUMN_DESCRIPTION};
+        String[] columns = {myDbHelper.COLUMN_COST,myDbHelper.COLUMN_CATEGORY,myDbHelper.COLUMN_DESCRIPTION};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
         {
-            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
             int cexp =cursor.getInt(cursor.getColumnIndex(myDbHelper.COLUMN_COST));
             String cate =cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
             String  desc =cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DESCRIPTION));
@@ -70,23 +112,56 @@ public class myDbAdapter {
 
 
 
-    public int delete(String uname)
+    public String getSumExpenses()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] whereArgs ={uname};
+        int cSum = 0;
+        String[] columns = {myDbHelper.COLUMN_COST};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        while (cursor.moveToNext())
+        {
+            int cexp =cursor.getInt(cursor.getColumnIndex(myDbHelper.COLUMN_COST));
 
-        int count =db.delete(myDbHelper.TABLE_NAME ,myDbHelper.COLUMN_CATEGORY+" = ?",whereArgs);
+            cSum += cexp;
+
+        }
+        buffer.append( "   "+cSum +" " );
+        return buffer.toString();
+    }
+    public String getSumExpensesOnCategory(String cate)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        int cSum = 0;
+        String[] columns = {myDbHelper.COLUMN_COST};
+        String query = "SELECT " + myDbHelper.COLUMN_COST +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_CATEGORY + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{cate.trim()});
+        StringBuffer buffer= new StringBuffer();
+        while (cursor.moveToNext())
+        {
+            int cexp =cursor.getInt(cursor.getColumnIndex(myDbHelper.COLUMN_COST));
+
+            cSum += cexp;
+
+        }
+        buffer.append(""+cSum +"");
+        return buffer.toString();
+    }
+
+
+
+    public int deleteByDesc(String desc)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] whereArgs ={desc.trim()};
+        int count =db.delete(myDbHelper.TABLE_NAME ,myDbHelper.COLUMN_DESCRIPTION+" = ?",whereArgs);
         return  count;
     }
 
 
 
-
-    public void deleteCustomerByRow1(int rowId)
-    {
-        String str_sql = "delete from " + myDbHelper.TABLE_NAME + " where " + myDbHelper.UID  + " = "  + rowId ;
-        dv.execSQL(str_sql);
-    }
 
 
 
@@ -98,6 +173,112 @@ public class myDbAdapter {
         db.delete(myDbHelper.TABLE_NAME, null, null);
         db.close();
     }
+
+
+    public int getCostOnDesc(String desc) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        int cost = 0;
+
+        String query = "SELECT " + myDbHelper.COLUMN_COST +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_DESCRIPTION + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{desc.trim()});
+
+        if (cursor.moveToFirst()) {
+            cost = cursor.getInt(cursor.getColumnIndex(myDbHelper.COLUMN_COST));
+        }
+        cursor.close();
+        db.close();
+        // Return the cost or do something with the retrieved data
+        return cost;
+    }
+
+    public String getCateOnDesc(String desc) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String cate = null;
+
+        String query = "SELECT " + myDbHelper.COLUMN_CATEGORY +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_DESCRIPTION + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{desc.trim()});
+
+        if (cursor.moveToFirst()) {
+            cate = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
+        }
+        cursor.close();
+        db.close();
+        // Return the cost or do something with the retrieved data
+        return cate;
+    }
+    public String getLocationOnDesc(String desc) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String cate = null;
+
+        String query = "SELECT " + myDbHelper.COLUMN_LOCATION +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_DESCRIPTION + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{desc.trim()});
+
+        if (cursor.moveToFirst()) {
+            cate = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_LOCATION));
+        }
+        cursor.close();
+        db.close();
+        // Return the cost or do something with the retrieved data
+        return cate;
+    }
+
+
+    public String getDateOnDesc(String desc) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String date = null;
+
+        String query = "SELECT " + myDbHelper.COLUMN_DATE +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_DESCRIPTION + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{desc.trim()});
+
+        if (cursor.moveToFirst()) {
+            date = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DATE));
+        }
+        cursor.close();
+        db.close();
+        // Return the cost or do something with the retrieved data
+        return date;
+    }
+
+    public ImageData getBillOnDesc(String desc) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+
+        String query = "SELECT " + myDbHelper.COLUMN_BILL +
+                " FROM " + myDbHelper.TABLE_NAME +
+                " WHERE " + myDbHelper.COLUMN_DESCRIPTION + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{desc.trim()});
+
+        ImageData imageData = null;
+        if (cursor.moveToFirst()) {
+            byte[] imageBytes = cursor.getBlob(cursor.getColumnIndex(myDbHelper.COLUMN_BILL));
+            imageData = new ImageData(imageBytes);
+        }
+
+        cursor.close();
+        db.close();
+
+        return imageData;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -130,29 +311,37 @@ public class myDbAdapter {
     public ArrayList<String> getArrayData(){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         ArrayList<String> helperGetArrayData = new ArrayList<>();
-        String query = "SELECT cost, category, description FROM " + myDbHelper.TABLE_NAME;
+        String query = "SELECT cost, category, description, date FROM " + myDbHelper.TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         Integer arrayCost = 0;
         String arrayCate = null;
+        String arrayDate = null;
         String arrayDesc = null;
-
-
 
         while (cursor.moveToNext()){
             arrayCost = cursor.getInt(cursor.getColumnIndex(myDbHelper.COLUMN_COST));
-            arrayCate = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DESCRIPTION));
-            arrayDesc = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
+            arrayDesc = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DESCRIPTION));
+            arrayCate = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_CATEGORY));
+            arrayDate = cursor.getString(cursor.getColumnIndex(myDbHelper.COLUMN_DATE));
 
 
-
-            String getArrayDescirbationAndCategory =  "ההוצאה: " + String.valueOf(arrayCost) +" , הקטיגוריה: "+ arrayCate + " , תיאור ההוצאה: " + arrayDesc;
+            String getArrayDescirbationAndCategory =  "הוצאה: " + String.valueOf(arrayCost) + "\nתיאור ההוצאה: " + arrayDesc + "\nקטיגוריה: "+ arrayCate + "\nתאריך ההוצאה: " + arrayDate;
 
             helperGetArrayData.add(getArrayDescirbationAndCategory);
         }
         return helperGetArrayData;
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -170,10 +359,13 @@ public class myDbAdapter {
         private static final String COLUMN_CATEGORY = "category";    //Column III
         private static final String COLUMN_DESCRIPTION= "description";    // Column IIII
         private static final String COLUMN_DATE = "date"; // Column IIIII
+        private static final String COLUMN_LOCATION = "location"; // Column IIIII
+        private static final String COLUMN_BILL = "bill";
+
         private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
                 " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_COST + " INTEGER, " +
                 COLUMN_DATE + " VARCHAR(255), " + COLUMN_CATEGORY + " VARCHAR(255), " +
-                COLUMN_DESCRIPTION + " VARCHAR(255));";
+                COLUMN_DESCRIPTION + " VARCHAR(255), " + COLUMN_BILL + " BLOB, " + COLUMN_LOCATION  + " VARCHAR(255));";
 
         private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
         private Context context;

@@ -88,6 +88,27 @@ public class myDbCategory {
         return count;
     }
 
+    public ArrayList<String> getArrayCategory(){
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        ArrayList<String> helperGetArrayData = new ArrayList<>();
+        String query = "SELECT nameOfCategory FROM " + myDbHelper.TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String arrayCate = null;
+
+
+
+        while (cursor.moveToNext()){
+            arrayCate = cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
+
+            String getArrayDescirbationAndCategory =   arrayCate;
+
+            helperGetArrayData.add(getArrayDescirbationAndCategory);
+        }
+        return helperGetArrayData;
+
+
+    }
+
 
 
 

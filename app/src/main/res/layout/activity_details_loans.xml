@@ -16,21 +16,21 @@
         android:layout_width="match_parent"
         android:gravity="right"
         android:layout_marginRight="15dp"
-        android:id="@+id/your_month"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:id="@+id/mLoan"
         android:textSize="20sp"
-        android:text="הוצאות - " />
+        android:text="הלווית - " />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="מחק את כל ההוצאות"
+        android:text="מחק את כל ההלוואות"
 
         android:textColor="@color/white"
-        android:onClick="deleteAll"/>
+        android:onClick="deleteAllLoans"/>
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewloans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

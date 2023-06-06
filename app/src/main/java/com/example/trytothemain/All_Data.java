@@ -29,10 +29,24 @@ public class All_Data extends AppCompatActivity {
         helper = new myDbAdapter(context);
     }
 
-    public long insert(int cost , String desc, String cate ) {
-        long id = helper.insertData(cost , desc, cate);
+    public long insert(int cost , String cate, String desc,String location , byte[] imageBytes) {
+        long id = helper.insertData(cost , cate, desc , location ,imageBytes );
         return id;
     }
+    public long insertDataWithoutLocation(int cost , String cate, String desc,byte[] imageBytes ) {
+        long id = helper.insertDataWithoutLocation(cost , cate, desc , imageBytes);
+        return id;
+    }
+    public long insertDataWithoutBill(int cost , String cate, String desc,String location ) {
+        long id = helper.insertDataWithoutBill(cost , cate, desc ,  location);
+        return id;
+    }
+    public long insertDataJustInfo(int cost , String cate, String desc) {
+        long id = helper.insertDataJustInfo(cost , cate, desc);
+        return id;
+    }
+
+
 
 
 
@@ -55,9 +69,47 @@ public class All_Data extends AppCompatActivity {
     }
 
     public ArrayList<String> getArrayData(){
+
         return  helper.getArrayData();
     }
 
+    public int getCostOnDesc(String desc){
+        return helper.getCostOnDesc(desc);
+    }
+    public String getCateOnDesc(String desc){
+        return helper.getCateOnDesc(desc);
+    }
+
+    public String getDateOnDesc(String desc){
+        return helper.getDateOnDesc(desc);
+    }
+    public String getLocationOnDesc(String desc){
+        return helper.getLocationOnDesc(desc);
+    }
+
+    public int deleteByDesc(String desc){
+        int a = helper.deleteByDesc(desc);
+        return a;
+    }
+    public ImageData getBillOnDesc(String desc){
+        return helper.getBillOnDesc(desc);
+    }
+
+
+
+
+
+
+    public String getSumExpenses(){
+
+        return helper.getSumExpenses();
+
+    }
+    public String getSumExpensesOnCategory(String cate){
+
+        return helper.getSumExpensesOnCategory(cate);
+
+    }
 
 
 

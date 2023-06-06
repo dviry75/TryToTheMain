@@ -4,6 +4,7 @@ package com.example.trytothemain;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -210,6 +211,17 @@ public class categoryActivity extends AppCompatActivity implements AdapterView.O
 
 
     } // הסרת קטיגוריה
+
+    public void detailCategory(View view){
+        Intent intent = new Intent(this , InfoCategory.class);
+        intent.putExtra("cate" , ActionCategory);
+        PressCategoryDialog.dismiss();
+        startActivity(intent);
+
+
+
+
+    }
 
 
 
