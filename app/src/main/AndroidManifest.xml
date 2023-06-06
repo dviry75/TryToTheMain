@@ -20,7 +20,7 @@
         tools:targetApi="31">
         <activity
             android:name=".InfoCategory"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".categoryActivity"
             android:exported="false" />
         <activity
             android:name=".InfoLoans"

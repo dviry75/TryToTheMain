@@ -44,7 +44,7 @@ public class infoDetail extends AppCompatActivity {
             Message.message(getApplicationContext() , "לא נשמרה קבלה");
         }
         else{
-            byte[] imageBytes = expenses.getBillOnDesc(description1) .getImageBytes();
+            byte[] imageBytes = expenses.getBillOnDesc(description1).getImageBytes();
             if(imageBytes ==null){
 
             }

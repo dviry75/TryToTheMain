@@ -10,10 +10,12 @@ public class ImageData {
         this.description = description;
     }
     public ImageData(byte[] imageBytes) {
+
         this.imageBytes = imageBytes;
     }
 
     public byte[] getImageBytes() {
+
         return imageBytes;
     }
 
